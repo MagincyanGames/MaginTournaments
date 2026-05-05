@@ -1,0 +1,22 @@
+{
+  "name": "@wsob/nestjs",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:dev": "tsc --watch"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^11.0.1",
+    "@nestjs/core": "^11.0.1",
+    "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/platform-socket.io": "^11.1.19",
+    "@nestjs/websockets": "^11.1.19",
+    "@wsob/common": "workspace:*",
+    "socket.io": "^4.8.3"
+  },
+  "dependencies": {
+    "typescript": "^6.0.3"
+  }
+}
