@@ -7,5 +7,8 @@ import { WSOBGateway } from "@wsob/nestjs";
     }
 })
 export class WSGateway extends WSOBGateway {
-
+    constructor() {
+        super()
+        this.SetWsob("@man", "HUEVOS")
+    }
 }

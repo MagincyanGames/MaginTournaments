@@ -7,6 +7,6 @@ export declare class WSOBGateway implements OnGatewayInit, OnGatewayConnection, 
     afterInit(server: Server): void;
     handleConnection(client: any, ...args: any[]): void;
     handleDisconnect(client: any): void;
-    sendWsobSet(key: string, payload: any): void;
+    SetWsob(key: string, payload: any): void;
     handleMessage(data: IWSOB): IWSOB | void;
 }

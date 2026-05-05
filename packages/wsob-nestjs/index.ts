@@ -4,7 +4,6 @@ import { Server } from "socket.io";
 import type IWSOB from '@wsob/common/packets'
 import { NotFoundException } from "@nestjs/common";
 
-
 export class WSOBGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
     private table: Record<string, WSEntryTable> = {};
 
@@ -23,7 +22,7 @@ export class WSOBGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
         console.log('client disconnected')
     }
 
-    public sendWsobSet(key: string, payload: any) {
+    public SetWsob(key: string, payload: any) {
         this.table[key] = payload
 
         const res: IWSOB = {
@@ -32,7 +31,7 @@ export class WSOBGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
             payload: payload
         }
 
-        this.server?.emit(key, res)
+        this.server?.emit(`@${key}`, res)
     }
 
     @SubscribeMessage('wsob')
@@ -48,7 +47,6 @@ export class WSOBGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
                     throw new Error()
 
                 this.table[data.key] = {
-                    status: 'X'
                 }
 
                 return {
@@ -59,7 +57,7 @@ export class WSOBGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 
             //TODO: No cualquiera puede setear
             if (data.type === 'SET')
-                this.sendWsobSet(data.key, data.payload)
+                this.SetWsob(data.key, data.payload)
 
             if (data.type === 'GET') {
                 return {
@@ -68,7 +66,6 @@ export class WSOBGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
                     payload: this.table[data.key]
                 }
             }
-
 
         }
         catch (e: unknown) {

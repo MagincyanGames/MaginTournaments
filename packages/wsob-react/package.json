@@ -2,8 +2,20 @@
   "name": "@wsob/react",
   "version": "1.0.0",
   "description": "",
-  "keywords": [],
-  "author": "magynciangames",
-  "license": "ISC",
-  "type": "commonjs"
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:dev": "tsc --watch"
+  },
+  "peerDependencies": {
+    "@wsob/common": "workspace:*"
+  },
+  "dependencies": {
+    "@wsob/common": "workspace:*",
+    "react": "^19.2.5",
+    "socket.io-client": "^4.8.3",
+    "typescript": "^6.0.3"
+  }
 }

@@ -3,10 +3,14 @@ import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 import { io, Socket } from 'socket.io-client'
 import type IWSOB from '@wsob/common/packets'
-import { useWSOB } from "~/wsob/useWSOB";
+import { useWsob } from "@wsob/react";
 
 export function Welcome() {
-  const [t] = useWSOB("man")
+  const [t] = useWsob("man")
+
+  useEffect(() => {
+    console.log(t)
+  }, [t])
 
   return (
     <main className="flex items-center justify-center pt-16 pb-4">

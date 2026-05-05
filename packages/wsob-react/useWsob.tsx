@@ -2,12 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { useSocket } from "./SocketComponent";
 import type IWSOBPacket from "@wsob/common/packets";
 
-export function useWSOB<T>(key: string) {
+export function useWsob<T>(key: string) {
     const { socket, isConnected } = useSocket()
 
     const [value, setValue] = useState<T>()
 
     function handleEvent({ key: packetKey, type, payload }: IWSOBPacket) {
+        console.log(`Got ${type} ${packetKey}: ${JSON.stringify(payload)} `)
         if (type === 'UPDATE' && packetKey === key)
             setValue(payload)
         else if (type === 'ERROR') {

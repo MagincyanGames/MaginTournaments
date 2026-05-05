@@ -29,14 +29,14 @@ class WSOBGateway {
     handleDisconnect(client) {
         console.log('client disconnected');
     }
-    sendWsobSet(key, payload) {
+    SetWsob(key, payload) {
         this.table[key] = payload;
         const res = {
             type: 'UPDATE',
             key: key,
             payload: payload
         };
-        this.server?.emit(key, res);
+        this.server?.emit(`@${key}`, res);
     }
     handleMessage(data) {
         try {
@@ -46,16 +46,14 @@ class WSOBGateway {
             if (data.type === 'MAKE') {
                 if (data.key in this.table)
                     throw new Error();
-                this.table[data.key] = {
-                    status: 'X'
-                };
+                this.table[data.key] = {};
                 return {
                     type: 'OK',
                     key: data.key
                 };
             }
             if (data.type === 'SET')
-                this.sendWsobSet(data.key, data.payload);
+                this.SetWsob(data.key, data.payload);
             if (data.type === 'GET') {
                 return {
                     type: 'OK',
