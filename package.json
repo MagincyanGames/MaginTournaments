@@ -2,6 +2,8 @@
   "name": "magin-tournaments",
   "private": true,
   "scripts": {
+    "start:back": "cd ./apps/backend && pnpm start",
+    "start:front": "cd ./apps/frontend && pnpm dev"
 
   }
 }
