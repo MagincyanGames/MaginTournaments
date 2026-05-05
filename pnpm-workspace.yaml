@@ -4,5 +4,6 @@ packages:
 
 ignoredBuiltDependencies:
   - '@nestjs/core'
+  - '@scarf/scarf'
   - esbuild
   - unrs-resolver
